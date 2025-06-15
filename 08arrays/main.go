@@ -28,4 +28,14 @@ func main() {
 	fmt.Println(sort.IntsAreSorted(age))
 	sort.Ints(age)
 	fmt.Println(age)
+
+	//slicing in slices
+
+	var courses=[]string{"react","javascript","python","java"}
+	fmt.Println(courses)
+	courses = append(courses, "golang")
+	fmt.Println(courses)
+	ind:=2
+	courses=append(courses[:ind],courses[ind+1:]...)
+	fmt.Println(courses)
 }
