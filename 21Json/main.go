@@ -15,7 +15,8 @@ type course struct {
 
 func main() {
 	fmt.Println("Hello World!")
-	encodeJson()
+	// encodeJson()
+	decodeJson()
 }
 
 func encodeJson() {
@@ -32,4 +33,35 @@ func encodeJson() {
 		panic(err)
 	}
 	fmt.Printf("%s\n", resultJson)
+}
+
+func decodeJson(){
+	data := []byte(`
+		{
+			"coursename": "dsa",
+			"Price": 200,
+			"Platform": "leetcode",
+			"tags": ["dsa", "c++"]
+        }
+	`)
+
+	var newCourse course
+
+	isValid := json.Valid(data)
+
+	if isValid{
+		fmt.Println("The JSON was valid")
+		json.Unmarshal(data, &newCourse)
+		fmt.Printf("%#v\n", newCourse)
+	}else{
+		fmt.Println("The JSON was not valid")
+	}
+
+	var newData map[string]interface{}
+	json.Unmarshal(data,&newData)
+	fmt.Printf("%#v\n",newData)
+
+	for key, value := range newData{
+		fmt.Printf("The key is %v and value is %v and the type is %T\n", key, value, value)
+	}
 }
